@@ -1,0 +1,69 @@
+body {
+  	height:100%;
+}    
+#content {
+	background-color:yellow;
+}
+.myfooter {
+    left-margin:-100px;
+}
+
+    table { width:100%; height:100px; }
+    table caption { text-align:left;  }
+    table thead th { text-align:left; border-bottom-width:1px; border-top-width:1px; }
+    table th, td { text-align:left; padding:6px;} 
+//resolving Birt's right space gap issue
+#Mask {
+  	weight:100%;
+}
+
+//source: http://forum.jquery.com/topic/grid-system-by-using-display-table-display-table-cell
+/* display : table management grid */
+.table, .table-2cols, .table-3cols, .table-4cols, .table-5cols{display:table; width: 100%; vertical-align: middle;}
+.table-cell{display:table-cell; vertical-align: middle; padding: 3px;}
+.table-2cols .table-cell, .table-2cols .table-cell1, .table-2cols .table-cell2{width: 50%;}
+.table-3cols .table-cell, .table-3cols .table-cell1, .table-3cols .table-cell2, .table-3cols .table-cell3{width: 33.333%;}
+.table-4cols .table-cell, .table-4cols .table-cell1, .table-4cols .table-cell2, .table-4cols .table-cell3, .table-4cols .table-cell4{width: 25%;}
+.table-5cols .table-cell, .table-5cols .table-cell1, .table-5cols .table-cell2, .table-5cols .table-cell3, .table-5cols .table-cell1, .table-5cols .table-cell5{width: 20%;}
+
+/* removing the extra padding */
+.ui-content {
+padding-top: 0px;
+padding-right: 0px;
+padding-bottom: 0px;
+padding-left: 0px;
+}
+                        /* the screen lock toggle button */
+                        .ui-field-contain, .ui-body ui-br {
+                                height:10px;
+                        }
+                        .quadrant, .chart {
+                                height:50%;
+                        }
+                        .iconcon .ui-bar .ui-bar-a .ui-footer {
+                                position:absolute;bottom:10px;height:100%;
+                        }
+                        .iconcon {
+left:-15px;
+width:105%;
+margin:auto;
+text-align:center;/* centers inline-blocks*/
+border:1px solid #000;
+padding:10px;
+position:absolute;bottom:10px;
+                        }
+                        .icon {
+padding-left: 20px;
+padding-right: 20px;
+                        }
+
+/* the list at the main page */
+                        .list {
+                        opacity:0.35;
+                        }
+                        .listitem {
+
+padding-left: 20px;
+padding-right: 20px;
+                        }
+

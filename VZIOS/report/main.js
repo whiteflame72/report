@@ -1,0 +1,124 @@
+var flip = 0;
+			function rptCallback1() {
+			}
+			
+			//http://forum.jquery.com/topic/alpha-4-orientation-change-css-don-t-work-in-android-fixed
+			$(function() {
+			    onChangeOrientationResize = function() {
+			        $('body').removeClass('portrait landscape').addClass(window.orientation ? 'landscape' : 'portrait');
+			    };            
+			    if ("onorientationchange" in window === false) { 
+			          window.addEventListener("resize", onChangeOrientationResize, false);
+			          onChangeOrientationResize();
+			    }
+			});
+			//http://forum.jquery.com/topic/horizontal-and-vertical-orientation-event
+			$(function() {
+			    var setOrientation = function() {
+			        if (window.orientation === undefined) { // desktop
+			            return;
+			        }
+			        
+			        if (Math.abs(window.orientation) == 90) { // horizontal
+			            $(document).triggerHandler('onHorizontalOrientation'); 
+			        }
+			        else { // vertical
+			            $(document).triggerHandler('onVerticalOrientation'); // meu evento
+			        }
+			    };
+			    var orientationEvent = "onorientationchange" in window ? "orientationchange" : "resize";
+			    window.addEventListener(orientationEvent, setOrientation, false);
+			    setOrientation();
+			});
+			$(document).bind('onHorizontalOrientation', function(){ 
+				$("title").html("Horizontal View");$(".chart").show();$(".list").hide();
+
+			});
+			$(document).bind('onVerticalOrientation', function(){ $("title").html("Vertical View");$(".chart").hide();$(".list").show(); });
+/*
+			//$(document).bind('taphold', function(e){ 
+			$('#q4').bind('taphold', function(e){ 
+				//http://stackoverflow.com/questions/1357118/javascript-event-preventdefault-vs-return-false
+                                e.stopImmediatePropagation();
+				e.preventDefault();
+				alert('Change Graph Type');
+				return false;
+			});
+*/
+//http://jsfiddle.net/4uws3/1/
+/*
+//$(.quadrant).bind('contextmenu',function(e){
+$('#q4').tap(function(e){
+    $('.context-menu').remove();
+    
+    $(document.body).append($('<div class="context-menu"><ul><li><a href="#">Copy</a></li><li><a href="#">Copy</a></li><li><a href="#">Copy</a></li></ul></div>').css({ left: e.pageX, top: e.pageY,zIndex: '101' }));
+      return false;
+});
+
+$(document.body).click( function () {
+            $('.context-menu').remove();
+});
+*/
+
+
+			//--- hide the address bar
+			window.addEventListener("load",function() {
+			// Set a timeout...
+				setTimeout(function(){
+				// Hide the address bar!
+				window.scrollTo(0, 1);
+				}, 0);
+			});
+
+			$(document).bind('mobileinit', function(){
+      			$.mobile.metaViewportContent = 'width=device-width, minimum-scale=1, maximum-scale=2';
+			});
+
+			<!-- http://forum.jquery.com/topic/change-pages-by-swiping-left-right-up-down -->
+	$('div.ui-page').live("swipeleft", function(){
+		var nextpage = $(this).next('div[data-role="page"]');
+		// swipe using id of next page if exists
+		if (nextpage.length > 0) {
+			$.mobile.changePage(nextpage, 'slide');
+		}
+	});
+	$('div.ui-page').live("swiperight", function(){
+		var prevpage = $(this).prev('div[data-role="page"]');
+		// swipe using id of next page if exists
+		if (prevpage.length > 0) {
+			$.mobile.changePage(prevpage, 'slide', true);
+		}
+	});
+
+//http://www.webdesignerdepot.com/2011/05/10-handy-jquery-mobile-tips-and-snippets-to-get-you-started/
+ $(document).ready(function() {
+  	// disable ajax nav
+  	$.mobile.ajaxLinksEnabled = false;
+
+	//source: https://github.com/neave/touch-scroll/issues/2
+	if (!!('ontouchstart' in window)) {
+		$('table').touchScroll();
+	}
+
+	//disable the default context menu
+	$('#q5').bind('taphold', function(e){
+        e.stopPropagation();
+		e.preventDefault();
+        if(flip == 0) {
+            $(".chart").show();$(".list").hide();
+            flip = 1;
+        } else {
+            $(".list").show();$(".chart").hide();
+            flip = 0;
+        }
+	});
+
+
+
+
+ });
+//http://jsfiddle.net/4uws3/1/
+
+
+//source: http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html
+//source: http://stackoverflow.com/questions/3305002/do-touch-events-not-work-with-text-input-elements-in-ipad-safari
